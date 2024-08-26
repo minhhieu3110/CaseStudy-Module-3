@@ -1,0 +1,6 @@
+.products-container {
+    position: relative;
+}
+.btn-add-product{
+    border-radius: 5px;
+}

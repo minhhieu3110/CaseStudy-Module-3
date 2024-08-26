@@ -1,0 +1,17 @@
+.logo-admin{
+    padding: 10px;
+    display: flex;
+}
+.menu-sidebar{
+    display: block;
+}
+ul{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px
+}
+a{
+    text-decoration: none;
+    color: #6E6E77;
+}
