@@ -139,3 +139,47 @@ form input{
 .btn-buy-product:hover {
   background-color: #005f5f;
 }
+.detail-container{
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  width: 70%;
+  height: 500px;
+  border: 1px solid #000;
+  display: flex;
+}
+.image-product{
+  width: 60%;
+  height: 100%;
+}
+.detail-product{
+  width: 40%;
+  height: 100%;
+  text-align: center;
+  border-left: 1px solid black;
+}
+
+/*Css Carousel*/
+.main-slider{
+  width: 100%;
+  height: 350px;
+}
+.image-main-slider > img{
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+.thumb-slider{
+  display: flex;
+  overflow: hidden;
+  gap: 10px;
+}
+.image-thumb-slider, .image-main-slider{
+  outline: none;
+}
+.image-thumb-slider > img{
+  border: 1px solid black;
+  margin-top: 10px;
+  outline: none;
+  border-radius: 5px;
+}
