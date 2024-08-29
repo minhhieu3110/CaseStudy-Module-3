@@ -10,6 +10,7 @@ import Categories from "./Pages/Categories/Categories";
 import AddCategory from "./Pages/Categories/AddCategory";
 import EditCategory from "./Pages/Categories/EditCategory";
 import Users from "./Pages/User/Users";
+import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 
 function App() {
     return (
@@ -30,9 +31,8 @@ function App() {
                             <Route path={'add-category'} element={<AddCategory/>}/>
                             <Route path={'edit-category/:id'} element={<EditCategory/>}/>
                         </Route>
-                        <Route path={'users'} element={<Users/>}>
-                        
-                        </Route>
+                        <Route path={'users'} element={<Users/>}></Route>
+                        <Route path={'cart'} element={<ShoppingCart/>}/>
                     </Routes>
                 </div>
             </div>

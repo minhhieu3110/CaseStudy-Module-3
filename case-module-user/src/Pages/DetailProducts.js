@@ -7,6 +7,7 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {formatCurrency} from "../Custom/utils/FormatCurrency";
+import {useCart} from "../Custom/hooks/useCart";
 
 export default function DetailProduct() {
     const {nameId} = useParams();
@@ -14,7 +15,7 @@ export default function DetailProduct() {
     const [product, setProduct] = useState({name: '', price: '', quantity: '', category: '', images: []});
     const mainSlider = useRef(null);
     const thumbSlider = useRef(null);
-    
+    const {addToCart} = useCart()
     useEffect(() => {
         axios.get(`http://localhost:3000/products/${id}`)
             .then((res) => {
@@ -65,10 +66,12 @@ export default function DetailProduct() {
                     </Slider>
                 </div>
                 <div className="detail-product">
-                    <h1>{product.name}</h1>
+                    <h4>{product.name}</h4>
                     <p>{formatCurrency(product.price)}</p>
                     <p>{product.category}</p>
+                    <button className='btn-add-to-cart' onClick={()=> addToCart(product)}>Thêm giỏ hàng</button>
                 </div>
+            
             </div>
         </>
     );

@@ -17,7 +17,7 @@ export default function Sidebar() {
             <nav className='menu-sidebar'>
                 <ul>
                     <li><Link to={""}><HomeIcon/> Dashboard</Link></li>
-                    <li><Link to={''}><ShoppingCartIcon/> Shopping Cart</Link></li>
+                    <li><Link to={'cart'}><ShoppingCartIcon/> Shopping Cart</Link></li>
                     <li><Link to={'products'}><PackageIcon/> Products</Link></li>
                     <li><Link to={'categories'}><CategoriesIcon/> Categories</Link></li>
                     <li><Link to={'users'}><UsersIcon/> Users</Link></li>

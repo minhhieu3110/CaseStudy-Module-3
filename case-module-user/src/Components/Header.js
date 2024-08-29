@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import logo from "../assets/logo.png";
 import {Link, useLocation, useNavigate} from "react-router-dom";
@@ -8,10 +8,12 @@ import CartIcon from "../Icons/CartIcon";
 import SearchIcon from "../Icons/SearchIcon";
 import Popup from "reactjs-popup";
 import Login from "../Pages/Login";
+import {MyContext} from "../MyContext";
 
 export default function Header() {
     const [categories, setCategories] = useState([]);
     const location = useLocation().pathname === '/register';
+    const {currentUser, cart} = useContext(MyContext)
     useEffect(() => {
         axios.get('http://localhost:3000/categories')
             .then((response) => {
@@ -35,13 +37,15 @@ export default function Header() {
                 ))}
             </div>
             <div className="nav-right">
+                <div>Hi {currentUser.username}</div>
                 <Popup
                     trigger={<Link to="#"><UserIcon /></Link>}
                 >
                     {location ? null : <Login/>}
                 </Popup>
-                <Link id="cart-user" to="/cart">
+                <Link to="cart">
                     <CartIcon />
+                    <span>{cart.length}</span>
                 </Link>
                 <Link id="search-user" to="/search">
                     <SearchIcon />

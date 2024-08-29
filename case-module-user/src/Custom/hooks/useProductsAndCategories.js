@@ -19,9 +19,27 @@ export function useProductsAndCategories(urlProducts, urlCategories) {
     }, [urlProducts, urlCategories])
     
     const getSubdirectory = (categoryName)=>{
-        const category = categories.find(category => category.name === categoryName);
-        return category ? category.subdirectory : '#'
+        switch(categoryName) {
+            case 'Thể thao':
+                return 'the-thao';
+            case 'Công nghệ':
+                return 'cong-nghe';
+            case 'Du lịch':
+                return 'du-lich';
+            case 'Giáo dục':
+                return 'giao-duc';
+            case 'Nghệ thuật':
+                return 'nghe-thuat';
+            default:
+                return 'other';
+        }
     }
-    
-    return {products, categories, getSubdirectory}
+    const generateUrl = (category, productName, productId) => {
+        const subdirectory = getSubdirectory(category);
+        const urlParts = subdirectory.split('/');
+        const uniqueSubdirectory = [...new Set(urlParts)].join('/');
+        
+        return `/${uniqueSubdirectory}/${productName}-${productId}`;
+    };
+    return {products, categories, getSubdirectory, generateUrl}
 }

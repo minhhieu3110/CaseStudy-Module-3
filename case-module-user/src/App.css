@@ -1,6 +1,7 @@
 *{
   box-sizing: border-box;
   margin: 0px;
+  outline: none;
 }
 .container-body{
   width: 90%;
@@ -124,7 +125,7 @@ form input{
   margin-bottom: 15px;
 }
 
-.btn-buy-product {
+.btn-add-to-cart {
   background-color: #007B7F;
   color: white;
   padding: 10px 20px;
@@ -136,7 +137,7 @@ form input{
   width: 100%;
 }
 
-.btn-buy-product:hover {
+.btn-add-to-cart:hover {
   background-color: #005f5f;
 }
 .detail-container{
@@ -157,6 +158,9 @@ form input{
   height: 100%;
   text-align: center;
   border-left: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /*Css Carousel*/

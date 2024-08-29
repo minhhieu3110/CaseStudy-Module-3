@@ -2,13 +2,12 @@ import {Field, Form, Formik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
 import '../App.css';
 import axios from "axios";
-import {useEffect, useState} from "react";
-import bcrypt from 'bcryptjs';
+import {useContext} from "react";
+import {MyContext} from "../MyContext";
 
 export default function Login() {
     const navigate = useNavigate();
-    
-    
+    const {setCurrentUser} = useContext(MyContext)
     return (
         <div className="form-login">
             <Formik
@@ -16,10 +15,11 @@ export default function Login() {
                     username: '',
                     password: ''
                 }}
-                onSubmit={ (values) => {
+                onSubmit={(values) => {
                     axios.post('http://localhost:3000/users/login', values).then((res) => {
-                        navigate('/')
                         alert('Login success!!!');
+                        setCurrentUser(res.data.user);
+                        navigate('/')
                     })
                         .catch(err => {
                             alert('Username or Password Invalid');

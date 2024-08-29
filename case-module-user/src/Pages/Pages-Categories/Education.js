@@ -1,27 +1,20 @@
-import newFeatures from '../../assets/Banner/New-Features.png'
-import '../../App.css'
-import StarRateIcon from "../../Icons/StarRateIcon";
-import {Link} from "react-router-dom";
-import {formatCurrency} from "../../Custom/utils/FormatCurrency";
+import {useContext} from "react";
+import {MyContext} from "../../MyContext";
 import {useProductsAndCategories} from "../../Custom/hooks/useProductsAndCategories";
+import {Link} from "react-router-dom";
+import StarRateIcon from "../../Icons/StarRateIcon";
+import {formatCurrency} from "../../Custom/utils/FormatCurrency";
 import {useCart} from "../../Custom/hooks/useCart";
 
-export default function NewFeature() {
-    const {
-        products, generateUrl
-    } = useProductsAndCategories('http://localhost:3000/products', 'http://localhost:3000/categories');
-    const reversedProducts = [...products].reverse()
-    const limitProductsToShow = reversedProducts.splice(0, 8)
-    const {addToCart} = useCart()
-    return (
-        <div className='container-newFeature'>
-            <div className="banner-newFeature">
-                <img src={newFeatures} alt="image Banner"/>
-            </div>
-            <br/>
+export default function Education(){
+    const {products, categories, getSubdirectory, generateUrl} = useProductsAndCategories('http://localhost:3000/products','http://localhost:3000/categories')
+    const {addToCart} = useCart();
+    const productsEducation = products.filter(pro => pro.category ==='Giáo dục')
+    return(
+        <>
             <div className="list-newFeature">
-                {limitProductsToShow.map((item) => (
-                    <div className='card'>
+                {productsEducation.map((item) => (
+                    <div className='card' key={item.id}>
                         <Link to={generateUrl(item.category, item.name, item.id)}>
                             <img src={item.images[0]} alt=""/>
                         </Link>
@@ -37,12 +30,11 @@ export default function NewFeature() {
                                 <span className='number-rate'>5.0</span>
                             </div>
                             <div className="price">{formatCurrency(item.price)}</div>
-                            <button className='btn-add-to-cart' onClick={()=> addToCart(item)}>Thêm giỏ hàng</button>
+                            <button className='btn-add-to-cart' onClick={() => addToCart(item)}>Thêm giỏ hàng</button>
                         </div>
                     </div>
                 ))}
             </div>
-            <br/>
-        </div>
+        </>
     )
 }
