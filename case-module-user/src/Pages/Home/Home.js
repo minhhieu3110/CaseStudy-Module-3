@@ -1,13 +1,13 @@
 import Carousel from "./Carousel";
 import NewFeature from "./NewFeature";
-import BestSales from "./BestSales";
+import ListProducts from "./ListProducts";
 
 export default function Home(){
     return(
         <>
             <Carousel/>
             <NewFeature/>
-            <BestSales/>
+            <ListProducts/>
         </>
     )
 }

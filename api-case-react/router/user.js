@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const users = [];
+const users = [
+    {id: 1, name: 'Admin', username: 'admin', password: 'admin', email: 'admin@admin.com', dob:'2024-09-03', role: 'admin'},
+];
 const bcrypt = require('bcryptjs');
 router.post("/register", (req, res) => {
     const { name, username, password, email, dob } = req.body;
@@ -15,7 +17,8 @@ router.post("/register", (req, res) => {
         username,
         password,
         email,
-        dob
+        dob,
+        role: 'user'
     };
     users.push(newUser);
     res.status(201).json(newUser);

@@ -18,6 +18,7 @@ export default function ListUsers(){
                     <th>Password</th>
                     <th>Email</th>
                     <th>DOB</th>
+                    <th>Role</th>
                     <th>Action</th>
                 </tr>
                 {listUsers.map((user, index) => (
@@ -28,6 +29,7 @@ export default function ListUsers(){
                         <td>{user.password}</td>
                         <td>{user.email}</td>
                         <td>{user.dob}</td>
+                        <td>{user.role}</td>
                         <td>Action</td>
                     </tr>
                 ))}

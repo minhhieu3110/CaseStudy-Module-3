@@ -26,7 +26,28 @@
 tr:nth-child(even){
     background-color: rgba(0, 0, 0, 0.05);
 }
-[class^='form-add'], [class^='form-edit']{
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+}
+form label {
+    display: block;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+form input{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+form .images-container {
+    margin-bottom: 10px;
+}
+[class^='form-add'], [class^='form-edit'], .form-login{
     width: 40%;
     height: 400px;
     position: relative;
@@ -38,4 +59,12 @@ tr:nth-child(even){
     overflow: auto;
     z-index: 1;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+.container-sidebar .menu-sidebar .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.form-login{
+    height: 250px;
 }

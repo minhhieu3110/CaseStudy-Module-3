@@ -20,15 +20,11 @@ export default function Sports(){
                             <Link to={generateUrl(item.category, item.name, item.id)}><h5
                                 className='cart-title'>{item.name}</h5></Link>
                             <div className="rate">
-                                <StarRateIcon/>
-                                <StarRateIcon/>
-                                <StarRateIcon/>
-                                <StarRateIcon/>
-                                <StarRateIcon/>
+                                {[...Array(5)].map((_, i) => <StarRateIcon key={i}/>)}
                                 <span className='number-rate'>5.0</span>
                             </div>
                             <div className="price">{formatCurrency(item.price)}</div>
-                            <button className='btn-add-to-cart' onClick={()=> addToCart(item)}>Thêm giỏ hàng</button>
+                            <button className='btn-add-to-cart' onClick={() => addToCart(item)}>Thêm giỏ hàng</button>
                         </div>
                     </div>
                 ))}

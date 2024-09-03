@@ -1,5 +1,4 @@
 import '../Styles/Header.css'
-import MenuIcon from "../Icons/MenuIcon";
 import SearchIcon from "../Icons/SearchIcon";
 import {
     DropdownMenu,
@@ -10,14 +9,20 @@ import {
     DropdownMenuTrigger
 } from "@radix-ui/react-dropdown-menu";
 import {Button} from "@radix-ui/themes";
+import {useNavigate} from "react-router-dom";
+import {useContext} from "react";
+import {MyContext} from "../MyContext";
 
 export default function Header() {
+    const {logout, currentUser} = useContext(MyContext)
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
     return (
         <div className='header-admin'>
             <div className='left-header'>
-                <button className='menu-icon'>
-                    <MenuIcon/>
-                </button>
                 <h4>Dashboard</h4>
             </div>
             <div className="right-header">
@@ -28,7 +33,7 @@ export default function Header() {
                 <div>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button className='dropdown'>Name</Button>
+                            <Button className='dropdown'>Hello {currentUser.name}</Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className='dropdown-content'>
                             <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -36,7 +41,7 @@ export default function Header() {
                             <DropdownMenuItem className='dropdown-item'>Detail</DropdownMenuItem>
                             <DropdownMenuItem className='dropdown-item'>Edit</DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className='dropdown-item'>Logout</DropdownMenuItem>
+                            <DropdownMenuItem className='dropdown-item' onClick={handleLogout}>Logout</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 

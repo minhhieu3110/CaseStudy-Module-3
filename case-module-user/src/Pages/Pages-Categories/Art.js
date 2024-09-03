@@ -1,5 +1,3 @@
-import {useContext} from "react";
-import {MyContext} from "../../MyContext";
 import {useProductsAndCategories} from "../../Custom/hooks/useProductsAndCategories";
 import {Link} from "react-router-dom";
 import StarRateIcon from "../../Icons/StarRateIcon";
@@ -22,11 +20,7 @@ export default function Art(){
                             <Link to={generateUrl(item.category, item.name, item.id)}><h5
                                 className='cart-title'>{item.name}</h5></Link>
                             <div className="rate">
-                                <StarRateIcon/>
-                                <StarRateIcon/>
-                                <StarRateIcon/>
-                                <StarRateIcon/>
-                                <StarRateIcon/>
+                                {[...Array(5)].map((_, i) => <StarRateIcon key={i}/>)}
                                 <span className='number-rate'>5.0</span>
                             </div>
                             <div className="price">{formatCurrency(item.price)}</div>

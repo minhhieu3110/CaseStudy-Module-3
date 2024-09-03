@@ -3,7 +3,6 @@ import {ErrorMessage, Field, FieldArray, Form, Formik} from "formik";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import * as Yup from "yup";
-import '../../Styles/AddProduct.css';
 import {Label} from "@radix-ui/react-dropdown-menu";
 import UploadImg from "../../UploadImg";
 import '../../App.css'

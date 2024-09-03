@@ -1,28 +1,34 @@
 import {createContext, useEffect, useState} from "react";
-import axios from "axios";
 
 export const MyContext = createContext({})
-const MyContextProvider = ({ children }) => {
-    const [listOrders, setListOrder] = useState([])
-    const [listProducts, setListProducts] = useState([])
-    const [listUsers, setListUsers] = useState([])
+const MyContextProvider = ({children}) => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [currentUser, setCurrentUser] = useState({name: ''});
     useEffect(() => {
-        axios.get('http://localhost:3000/carts').then((response) => {
-            setListOrder(response.data)
-        })
+        const data = JSON.parse(localStorage.getItem('dataLogin'));
+        console.log(data)
+        if (data) {
+            setIsLoggedIn(true);
+            setIsAdmin(data.user.role = 'admin');
+        } else {
+            setIsLoggedIn(false)
+            setIsAdmin(false)
+        }
     }, []);
-    useEffect(() => {
-        axios.get('http://localhost:3000/products').then((response) => {
-            setListProducts(response.data)
-        })
-    }, []);
-    useEffect(() => {
-        axios.get('http://localhost:3000/users').then((response) => {
-            setListUsers(response.data)
-        })
-    }, []);
-    return(
-        <MyContext.Provider value={{listOrders, setListOrder, listProducts, setListProducts, listUsers, setListUsers}}>
+    const login = (data) => {
+        localStorage.setItem('dataLogin', JSON.stringify(data));
+        setIsLoggedIn(true);
+        setIsAdmin(data.user.role === 'admin');
+    };
+    const logout = () => {
+        localStorage.removeItem('dataLogin');
+        setIsLoggedIn(false);
+        setIsAdmin(false);
+        setCurrentUser('')
+    };
+    return (
+        <MyContext.Provider value={{isLoggedIn, isAdmin, currentUser, setCurrentUser, login, logout}}>
             {children}
         </MyContext.Provider>
     )

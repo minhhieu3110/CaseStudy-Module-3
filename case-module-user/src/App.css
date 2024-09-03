@@ -187,3 +187,34 @@ form input{
   outline: none;
   border-radius: 5px;
 }
+.search-filters{
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#search{
+  width: 355px;
+  height: 20px;
+  border: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+#search > input{
+  width: 219px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+}
+#search > select{
+  outline: none;
+  border: none;
+  border-radius: 10px;
+}
+[class^='btn-action']{
+  border-radius: 10px;
+  background: lightgray;
+  border: none;
+}

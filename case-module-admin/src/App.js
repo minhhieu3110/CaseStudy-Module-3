@@ -11,6 +11,7 @@ import AddCategory from "./Pages/Categories/AddCategory";
 import EditCategory from "./Pages/Categories/EditCategory";
 import Users from "./Pages/User/Users";
 import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
+import Login from "./Pages/Login";
 
 function App() {
     return (
@@ -22,7 +23,8 @@ function App() {
                 <Header/>
                 <div className="main">
                     <Routes>
-                        <Route path={''} element={<Home/>}/>
+                        <Route path={''} element={<Login/>}/>
+                        <Route path={'home'} element={<Home/>}/>
                         <Route path={'products'} element={<Products/>}>
                             <Route path={'add-product'} element={<AddProduct/>}/>
                             <Route path={'edit-product/:id'} element={<EditProduct/>}/>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { formatCurrency } from "../Custom/utils/FormatCurrency";
 import { MyContext } from "../MyContext";
 import { useProducts } from "../Custom/hooks/useProducts";
+import DeleteIcon from "../Icons/DeleteIcon";
 
 export default function Cart() {
     const { cart, setCart, currentUser } = useContext(MyContext);
@@ -71,9 +72,13 @@ export default function Cart() {
         };
         
         try {
-            await axios.post('http://localhost:3000/carts', cartPayload);
-            console.log('Order placed successfully:', cartPayload);
-            setNotification("Đơn hàng đã được đặt thành công !!");
+            if(cart.length > 0){
+                await axios.post('http://localhost:3000/carts', cartPayload);
+                console.log('Order placed successfully:', cartPayload);
+                setNotification("Đơn hàng đã được đặt thành công !!");
+            }else {
+                setNotification('Thêm sản phẩm vào giỏ trước khi đặt hàng !!!')
+            }
         } catch (error) {
             console.error('Error placing order:', error);
             setNotification("Error placing order. Please try again.");
@@ -95,9 +100,9 @@ export default function Cart() {
                 </tr>
                 </thead>
                 <tbody>
-                {cart.map(item => (
+                {cart.map((item,index) => (
                     <tr key={item.id}>
-                        <td>{item.id}</td>
+                        <td>{index + 1}</td>
                         <td>{item.name}</td>
                         <td>{formatCurrency(item.price)}</td>
                         <td>
@@ -124,14 +129,14 @@ export default function Cart() {
                         </td>
                         <td>{formatCurrency(item.price * item.quantity)}</td>
                         <td>
-                            <button onClick={() => removeFromCart(item.id)}>Remove</button>
+                            <button onClick={() => removeFromCart(item.id)}><DeleteIcon/></button>
                         </td>
                     </tr>
                 ))}
                 </tbody>
             </table>
             <h4>Total: {formatCurrency(cart.reduce((sum, item) => sum + item.price * item.quantity, 0))}</h4>
-            <button onClick={handlePlaceOrder}>Đặt hàng</button>
+            <button onClick={handlePlaceOrder} className='btn-action-order'>Đặt hàng</button>
         </div>
     );
 }

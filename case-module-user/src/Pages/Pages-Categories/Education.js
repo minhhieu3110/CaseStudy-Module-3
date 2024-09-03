@@ -1,5 +1,3 @@
-import {useContext} from "react";
-import {MyContext} from "../../MyContext";
 import {useProductsAndCategories} from "../../Custom/hooks/useProductsAndCategories";
 import {Link} from "react-router-dom";
 import StarRateIcon from "../../Icons/StarRateIcon";
@@ -7,7 +5,7 @@ import {formatCurrency} from "../../Custom/utils/FormatCurrency";
 import {useCart} from "../../Custom/hooks/useCart";
 
 export default function Education(){
-    const {products, categories, getSubdirectory, generateUrl} = useProductsAndCategories('http://localhost:3000/products','http://localhost:3000/categories')
+    const {products, generateUrl} = useProductsAndCategories('http://localhost:3000/products','http://localhost:3000/categories')
     const {addToCart} = useCart();
     const productsEducation = products.filter(pro => pro.category ==='Giáo dục')
     return(
@@ -22,11 +20,7 @@ export default function Education(){
                             <Link to={generateUrl(item.category, item.name, item.id)}><h5
                                 className='cart-title'>{item.name}</h5></Link>
                             <div className="rate">
-                                <StarRateIcon/>
-                                <StarRateIcon/>
-                                <StarRateIcon/>
-                                <StarRateIcon/>
-                                <StarRateIcon/>
+                                {[...Array(5)].map((_, i) => <StarRateIcon key={i}/>)}
                                 <span className='number-rate'>5.0</span>
                             </div>
                             <div className="price">{formatCurrency(item.price)}</div>
